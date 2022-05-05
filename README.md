@@ -32,18 +32,20 @@ A sort method for arrays that contains primitives, such as _Strings_ or _Numbers
 
 Returns a sorted array with the given order
 
-### Array.Prototype.sortObjects(properties = [])
+### Array.Prototype.sortObjects(properties = [ ])
 
-A sort method for arrays that contains Objects. The parameter **properties** specifies the properties to be sorted by.
+Dependencies: none
+
+A sort method for arrays that contains Objects. The parameter **properties** specifies the properties to be sorted by (ascending). An option to sort properties differently in ascending and descending order will follow soon.
 
 ## Demo
 
 ```js
 const people = [
   { name: 'Benni', age: 20 },
-  { name: 'Anna', age: 20 },
-  { name: 'Pascal', age: 42 },
   { name: 'Anna', age: 25 },
+  { name: 'Pascal', age: 42 },
+  { name: 'Anna', age: 20 },
   { name: 'Eva', age: 21 },
   { name: 'Michelle', age: 29 },
 ]
