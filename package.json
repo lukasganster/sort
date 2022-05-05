@@ -1,5 +1,5 @@
 {
-  "name": "sort",
+  "name": "@lukasganster/sort",
   "version": "1.0.0",
   "description": "A simple JavaScript module to sort arrays of primitives and objects",
   "main": "index.js",
