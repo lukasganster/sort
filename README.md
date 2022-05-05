@@ -38,20 +38,28 @@ A sort method for arrays that contains Objects. The parameter **properties** spe
 
 ## Demo
 
-```
+```js
 const people = [
   { name: 'Benni', age: 20 },
   { name: 'Anna', age: 20 },
   { name: 'Pascal', age: 42 },
-  { name: 'Bernhard', age: 12 },
   { name: 'Anna', age: 25 },
-  { name: 'Fabian', age: 13 },
   { name: 'Eva', age: 21 },
   { name: 'Michelle', age: 29 },
 ]
 
-people.sortObjects(['name', 'age'])
+console.log(people.sortObjects(['name', 'age']))
 
+/* Logs follwing:
+  [
+    { name: 'Anna', age: 20 },
+    { name: 'Anna', age: 25 },
+    { name: 'Benni', age: 20 },
+    { name: 'Eva', age: 21 },
+    { name: 'Michelle', age: 29 },
+    { name: 'Pascal', age: 42 }
+  ]
+*/
 ```
 
 ## License
