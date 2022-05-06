@@ -36,11 +36,11 @@ Returns a sorted array with the given order,
 
 Dependencies: none
 
-A sort method for arrays that contains Objects. The parameter **properties** specifies the properties to be sorted by (ascending). An option to sort properties differently in ascending and descending order will follow soon.
+A sort method for arrays that contains Objects. The parameter **properties** specifies the properties to be sorted by (ascending). Optionally, an object can be defined per property, which specifies the name of the property as well as the order. The example below illustrates the uncomplicated use.
 
 Returns a sorted array according to the given properties.
 
-## Usage
+## Demo
 
 ```js
 const people = [
@@ -52,17 +52,37 @@ const people = [
   { name: 'Michelle', age: 29 },
 ]
 
-console.log(people.sortObjects(['name', 'age']))
+/////
+// Multiple properties sorted in (default) ascending order
 
-/* Logs follwing:
-  [
+people.sortObjects(['name', 'age'])
+/* Return the follwing array:
+[
     { name: 'Anna', age: 20 },
     { name: 'Anna', age: 25 },
     { name: 'Benni', age: 20 },
     { name: 'Eva', age: 21 },
     { name: 'Michelle', age: 29 },
     { name: 'Pascal', age: 42 }
-  ]
+]
+*/
+
+/////
+// Multiple properties sorted in different order
+
+people.sortObjects([
+  { property: 'name', order: 'desc' },
+  { property: 'age', order: 'asc' },
+])
+/* Returns the following array:
+[
+    { name: 'Pascal', age: 42 },
+    { name: 'Michelle', age: 29 },
+    { name: 'Eva', age: 21 },
+    { name: 'Benni', age: 20 },
+    { name: 'Anna', age: 20 },
+    { name: 'Anna', age: 25 }
+]
 */
 ```
 
