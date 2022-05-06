@@ -15,27 +15,45 @@ if (Array.prototype.sortObjects === undefined) {
     if (typeof this[0] !== 'object') return this.sortBasic()
 
     if (typeof this[0] === 'object') {
-      const SINGLE_PROPERTY = properties.length === 1 ? true : false
-      const VALID_PROPERTIES = properties.every((property) =>
-        Object.keys(this[0]).includes(property),
+      const VALID_PROPERTIES = properties.every(
+        (singleProperty) =>
+          Object.keys(this[0]).includes(singleProperty) ||
+          Object.keys(this[0]).includes(singleProperty?.property),
       )
       if (!VALID_PROPERTIES) return this
-      if (SINGLE_PROPERTY) {
-        return this.sort((a, b) =>
-          a[properties[0]] > b[properties[0]] ? 1 : -1,
-        )
-      } else {
-        let evalString = []
-        properties.forEach((property) => {
-          if (typeof this[0][property] == 'string')
-            evalString.push(`a.${property}.localeCompare(b.${property})`)
-          else evalString.push(`a.${property} - b.${property}`)
-        })
-        evalString = evalString.join(' || ')
-        return this.sort((a, b) => {
-          return eval(evalString)
-        })
-      }
+
+      let evalString = []
+      properties.forEach((singleProperty) => {
+        // Multiple properties with different order
+        if (
+          typeof singleProperty === 'object' &&
+          singleProperty.property &&
+          singleProperty.order
+        ) {
+          const ORDER = singleProperty.order.toLowerCase().trim() || 'asc'
+          const PROPERTY = singleProperty.property
+          if (typeof this[0][PROPERTY] === 'string') {
+            if (ORDER === 'desc' || ORDER === 'descending')
+              evalString.push(`b.${PROPERTY}.localeCompare(a.${PROPERTY})`)
+            else evalString.push(`a.${PROPERTY}.localeCompare(b.${PROPERTY})`)
+          } else {
+            if (ORDER === 'desc' || ORDER === 'descending')
+              evalString.push(`b.${PROPERTY} - a.${PROPERTY}`)
+            else evalString.push(`a.${PROPERTY} - b.${PROPERTY}`)
+          }
+        }
+
+        // Multiple properties with default order (ascending)
+        else if (typeof this[0][singleProperty] === 'string')
+          evalString.push(
+            `a.${singleProperty}.localeCompare(b.${singleProperty})`,
+          )
+        else evalString.push(`a.${singleProperty} - b.${singleProperty}`)
+      })
+      evalString = evalString.join(' || ')
+      return this.sort((a, b) => {
+        return eval(evalString)
+      })
     }
   }
 }
