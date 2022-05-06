@@ -1,12 +1,12 @@
 # Sort
 
-The purpose of this library is to augment the Array.prototype to provide simple sort functions that have more distinct meaning.
+The purpose of this library is to augment the Array.prototype to provide simple sort functions that have more distinct meaning. This package offers a straightforward way to sort an array of objects according to several metrics.
 
 ## Installation
 
 Install this package with npm.
 
-```
+```bash
 npm install @lukasganster/sort
 ```
 
@@ -28,9 +28,9 @@ require('@lukasganster/sort')
 
 Dependencies: none
 
-A sort method for arrays that contains primitives, such as _Strings_ or _Numbers_. The parameter **order** here can be either ascending (asc) or descending (desc)
+A sort method for arrays that contains primitives, such as _Strings_ or _Numbers_. The parameter **order** here can be either ascending (asc) or descending (desc),
 
-Returns a sorted array with the given order
+Returns a sorted array with the given order,
 
 ### Array.Prototype.sortObjects(properties = [ ])
 
@@ -38,7 +38,9 @@ Dependencies: none
 
 A sort method for arrays that contains Objects. The parameter **properties** specifies the properties to be sorted by (ascending). An option to sort properties differently in ascending and descending order will follow soon.
 
-## Demo
+Returns a sorted array according to the given properties.
+
+## Usage
 
 ```js
 const people = [
